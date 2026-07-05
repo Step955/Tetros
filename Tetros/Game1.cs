@@ -70,10 +70,11 @@ namespace Tetros
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _gameStateManager.LoadContent(Content);
+
             // TODO: use this.Content to load your game content here
-            /*
+            
             // Loading a Song using the content pipeline
-            Song song = Content.Load<Song>("Undertale- Megalovania");
+            Song song = Content.Load<Song>("tetros");
 
             // Set whether the song should repeat when finished
             MediaPlayer.IsRepeating = true;
@@ -89,7 +90,7 @@ namespace Tetros
 
             // Start playing the background music
             MediaPlayer.Play(song);
-            */
+            
         }
 
         protected override void Update(GameTime gameTime)

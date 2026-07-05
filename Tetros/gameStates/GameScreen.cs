@@ -40,6 +40,7 @@ namespace Tetros.menus
             _GUIElements.TryAdd("RightMoveButton", new GUIElements.TouchClickButton());
             _GUIElements.TryAdd("LeftRotateButton", new GUIElements.TouchClickButton());
             _GUIElements.TryAdd("RightRotateButton", new GUIElements.TouchClickButton());
+            _GUIElements.TryAdd("SpeedUpButton", new GUIElements.TouchPressReleaseButton());
 
             _GUIElements.TryAdd("ScoreText", new GUIElements.TextTopMiddle());
 
@@ -47,9 +48,13 @@ namespace Tetros.menus
             _GUIElements["RightMoveButton"].InitializeTouch(graphicsDevice, gameField.moveRight, new Rectangle(780, 2048, 200, 200));
             _GUIElements["LeftRotateButton"].InitializeTouch(graphicsDevice, gameField.rotateLeft, new Rectangle(100, 1769, 200, 200));
             _GUIElements["RightRotateButton"].InitializeTouch(graphicsDevice, gameField.rotateRight, new Rectangle(780, 1769, 200, 200));
+            _GUIElements["SpeedUpButton"].InitializeTouch(graphicsDevice, gameField.SpeedUpFall, gameField.SlowDownFall, new Rectangle(40, 90, 1000, 1600));
 
             Game1.score = 0;
 
+            Texture2D transparent = new Texture2D(graphicsDevice, 1, 1);
+            transparent.SetData(new[] { Color.Transparent });
+            _GUIElements["SpeedUpButton"].LoadTexture(transparent , new Rectangle(0,0,1,1));
         }
 
         public override void Load(ContentManager content)
@@ -62,6 +67,7 @@ namespace Tetros.menus
             _GUIElements["RightMoveButton"].LoadTexture(ButtonsTextures , new Rectangle(100,0,100,100));
             _GUIElements["LeftRotateButton"].LoadTexture(ButtonsTextures , new Rectangle(200,0,100,100));
             _GUIElements["RightRotateButton"].LoadTexture(ButtonsTextures , new Rectangle(300,0,100,100));
+
 
             _GUIElements["ScoreText"].InitializeText(Game1.score.ToString(), Color.White, new Vector2(540, 1800), TextFont);
         }

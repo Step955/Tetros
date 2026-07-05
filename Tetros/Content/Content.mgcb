@@ -56,6 +56,12 @@
 /processorParam:TextureFormat=Color
 /build:Icon.ico
 
+#begin tetros.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:tetros.wav
+
 #begin woodBricks/wood1.png
 /importer:TextureImporter
 /processor:TextureProcessor

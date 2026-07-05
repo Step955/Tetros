@@ -18,7 +18,7 @@ namespace Tetros.menus
 
         public override void Initialize(GraphicsDevice graphicsDevice)
         {
-            _GUIElements.TryAdd("Button", new GUIElements.TouchClickButton());
+            _GUIElements.TryAdd("Button", new GUIElements.TouchReleaseButton());
             _GUIElements.TryAdd("GOText", new GUIElements.TextTopMiddle());
             _GUIElements.TryAdd("GtMText", new GUIElements.TextTopMiddle());
 

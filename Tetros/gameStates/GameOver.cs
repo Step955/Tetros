@@ -19,7 +19,7 @@ namespace Tetros.gameStates
 
         public override void Initialize(GraphicsDevice graphicsDevice)
         {
-            _GUIElements.TryAdd("Button", new GUIElements.TouchClickButton());
+            _GUIElements.TryAdd("Button", new GUIElements.TouchReleaseButton());
             _GUIElements.TryAdd("GOText", new GUIElements.TextTopMiddle());
             _GUIElements.TryAdd("GtMText", new GUIElements.TextTopMiddle());            
             _GUIElements.TryAdd("ScoreText", new GUIElements.TextTopMiddle());            

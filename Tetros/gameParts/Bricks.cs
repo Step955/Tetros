@@ -13,7 +13,6 @@ namespace Tetros.gameParts
         {
             Vector2 Position = new Vector2(5, -5);
             public List<Vector2> Blocks { get; protected set; }
-
             public byte TextureIndex = 1;
             //Color Color = Color.White;
 
@@ -25,7 +24,7 @@ namespace Tetros.gameParts
 
             public void start()
             {
-                Game1._timeEvents.AddTimeEvent(0.25f, Gravity);
+                Game1._timeEvents.AddTimeEvent(0.5f, Gravity);
             }
 
             public void Render(SpriteBatch spriteBatch, Texture2D texture)
@@ -141,6 +140,17 @@ namespace Tetros.gameParts
                 Game1._timeEvents.RemoveTimeEvent(Gravity);
             }
 
+            public void SpeedUpFall()
+            {
+                Game1._timeEvents.RemoveTimeEvent(Gravity);
+                Game1._timeEvents.AddTimeEvent(0.15f, Gravity);
+            }
+
+            public void SlowDownFall()
+            {
+                Game1._timeEvents.RemoveTimeEvent(Gravity);
+                Game1._timeEvents.AddTimeEvent(0.5f, Gravity);
+            }
         }
 
         public class BrickLine : Brick {

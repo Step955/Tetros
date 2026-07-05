@@ -20,6 +20,7 @@ namespace Tetros.engine
         virtual public void Initialize(GraphicsDevice graphicsDevice, EventHandler onPressed, EventHandler onHeld, EventHandler onRelease, Rectangle buttonBody) {}
         virtual public void Initialize(GraphicsDevice graphicsDevice, EventHandler onPressed, EventHandler onRelease, Rectangle buttonBody) { }
         virtual public void InitializeTouch(GraphicsDevice graphicsDevice, EventHandler touch, Rectangle buttonBody) { }
+        virtual public void InitializeTouch(GraphicsDevice graphicsDevice, EventHandler press, EventHandler release, Rectangle buttonBody) { }
         virtual public void InitializeText(string text, Color color, Vector2 poss, SpriteFont font) { }
         virtual public void ChangeText(string newText) { }
         virtual public void Disable() { }
@@ -284,8 +285,6 @@ namespace Tetros.engine
                 _spriteBatch.End();
             }
 
-
-
             public void processInput(TouchCollection newTouches, TouchCollection oldTouches)
             {
                 foreach (TouchLocation newTouchLocation in newTouches)
@@ -306,6 +305,128 @@ namespace Tetros.engine
                     }
                 }
                 _isPressed = false; 
+            }
+        }
+        public class TouchReleaseButton : GUIElements
+        {
+            private Rectangle _buttonBody;
+            private Texture2D _buttonTexture;
+            private Rectangle _buttonTextureRect;
+            private event EventHandler _onRelease;
+            private bool _isPressed = false;
+            private SpriteBatch _spriteBatch;
+
+            public override void InitializeTouch(GraphicsDevice graphicsDevice, EventHandler touch, Rectangle buttonBody)
+            {
+                _buttonBody = buttonBody;
+                _onRelease = touch;
+                Game1._userInputManager.BindTouch(processInput);
+            }
+            public override void Disable()
+            {
+                Game1._userInputManager.UnbindTouch(processInput);
+            }
+            override public void LoadTexture(Texture2D butTexture, Rectangle TextureRect)
+            {
+                _buttonTexture = butTexture;
+                _buttonTextureRect = TextureRect;
+            }
+            override public void Update(GameTime gameTime)
+            {
+
+            }
+            override public void Draw(GraphicsDevice graphicsDevice, GameTime gameTime)
+            {
+                _spriteBatch ??= new SpriteBatch(graphicsDevice);
+                _spriteBatch.Begin();
+                _spriteBatch.Draw(_buttonTexture, _buttonBody, _buttonTextureRect, Color.White);
+                _spriteBatch.End();
+            }
+
+            public void processInput(TouchCollection newTouches, TouchCollection oldTouches)
+            {
+                foreach (TouchLocation newTouchLocation in newTouches)
+                {
+                    if (_buttonBody.Contains(Game1.Instance.ScreenToRenderTarget(newTouchLocation.Position)))
+                    {
+                        if (oldTouches.Contains(newTouchLocation) || _isPressed)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            _isPressed = true;
+                            _onRelease?.Invoke(this, EventArgs.Empty);
+                            return;
+                        }
+                    }
+                }
+                if (_isPressed)
+                {
+                    _isPressed = false;
+                    _onRelease?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
+
+        public class TouchPressReleaseButton : GUIElements
+        {
+            private Rectangle _buttonBody;
+            private Texture2D _buttonTexture;
+            private Rectangle _buttonTextureRect;
+            private event EventHandler _onPressed;
+            private event EventHandler _onReleased;
+            private bool _isPressed = false;
+            private SpriteBatch _spriteBatch;
+
+            public override void InitializeTouch(GraphicsDevice graphicsDevice, EventHandler press, EventHandler release, Rectangle buttonBody)
+            {
+                _buttonBody = buttonBody;
+                _onPressed = press;
+                _onReleased = release;
+                Game1._userInputManager.BindTouch(processInput);
+            }
+            public override void Disable()
+            {
+                Game1._userInputManager.UnbindTouch(processInput);
+            }
+            override public void LoadTexture(Texture2D butTexture, Rectangle TextureRect)
+            {
+                _buttonTexture = butTexture;
+                _buttonTextureRect = TextureRect;
+            }
+
+            override public void Draw(GraphicsDevice graphicsDevice, GameTime gameTime)
+            {
+                _spriteBatch ??= new SpriteBatch(graphicsDevice);
+                _spriteBatch.Begin();
+                _spriteBatch.Draw(_buttonTexture, _buttonBody, _buttonTextureRect, Color.White);
+                _spriteBatch.End();
+            }
+
+            public void processInput(TouchCollection newTouches, TouchCollection oldTouches)
+            {
+                foreach (TouchLocation newTouchLocation in newTouches)
+                {
+                    if (_buttonBody.Contains(Game1.Instance.ScreenToRenderTarget(newTouchLocation.Position)))
+                    {
+                        if (oldTouches.Contains(newTouchLocation) || _isPressed)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            _isPressed = true;
+                            _onPressed?.Invoke(this, EventArgs.Empty);
+                            return;
+                        }
+                    }
+                }
+                if (_isPressed)
+                {
+                    _isPressed = false;
+                    _onReleased?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
     }

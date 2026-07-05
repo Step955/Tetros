@@ -1,5 +1,6 @@
 ﻿using Android.Media.Metrics;
 using Android.Service.Voice;
+using Android.Views;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -243,6 +244,9 @@ namespace Tetros.gameParts
         {
             activeBrick.Rotate(true);
         }
+
+        public void SpeedUpFall(object sender, EventArgs e) => activeBrick.SpeedUpFall();
+        public void SlowDownFall(object sender, EventArgs e) => activeBrick.SlowDownFall();
 
     }
 }
