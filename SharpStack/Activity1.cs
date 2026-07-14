@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework;
 namespace SharpStack
 {
     [Activity(
-        Label = "Tetros",
+        Label = "SharpStack",
         MainLauncher = true,
         AlwaysRetainTaskState = true,
         LaunchMode = LaunchMode.SingleInstance,
@@ -100,11 +100,11 @@ namespace SharpStack
             {
                 var ai = PackageManager.GetApplicationInfo(PackageName, Android.Content.PM.PackageInfoFlags.MetaData);
                 var appId = ai.MetaData != null ? ai.MetaData.GetString("com.google.android.gms.ads.APPLICATION_ID") : null;
-                Android.Util.Log.Info("Tetros", $"AdMob APP ID from manifest: {appId}");
+                Android.Util.Log.Info("SharpStack", $"AdMob APP ID from manifest: {appId}");
             }
             catch (System.Exception ex)
             {
-                Android.Util.Log.Warn("Tetros", "Failed to read AdMob APP ID: " + ex);
+                Android.Util.Log.Warn("SharpStack", "Failed to read AdMob APP ID: " + ex);
             }
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.P)
