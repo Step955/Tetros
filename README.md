@@ -1,4 +1,4 @@
-# Tetros
+# SharpStack
 
 A **Tetris-inspired puzzle game** built with C# and MonoGame (XNA Framework). Test your skills by stacking falling bricks, completing rows, and achieving the highest score!
 
@@ -50,4 +50,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 **Contributing**: Feel free to fork, submit issues, and make pull requests!
 
-**Have fun playing Tetros!** 🎉
+**Have fun playing SharpStack!** 🎉
