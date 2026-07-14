@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-android</TargetFramework>
+    <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
+    <OutputType>Exe</OutputType>
+    <ApplicationId>com.companyname.Tetros</ApplicationId>
+    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <AndroidEnableJetifier>true</AndroidEnableJetifier>
+    <AndroidEnableDesugar>true</AndroidEnableDesugar>
+    <!-- Define GOOGLE_ADS to enable AdMob integration in Activity1.cs -->
+    <DefineConstants>$(DefineConstants);GOOGLE_ADS</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Default AdMob IDs per configuration. Debug uses official Google test IDs. -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <AdMobAppId>ca-app-pub-3940256099942544~3347511713</AdMobAppId>
+    <AdMobBannerId>ca-app-pub-3940256099942544/6300978111</AdMobBannerId>
+  </PropertyGroup>
+
+  <!-- Release configuration: values should be provided via Secrets.props, environment variables, or MSBuild properties. -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <!-- Prefer values from Secrets.props or MSBuild properties; fallback to environment variables ADMOB_APP_ID / ADMOB_BANNER_ID -->
+    <AdMobAppId>$(AdMobAppId)</AdMobAppId>
+    <AdMobBannerId>$(AdMobBannerId)</AdMobBannerId>
+    <AdMobAppId Condition="'$(AdMobAppId)' == ''">$([System.Environment]::GetEnvironmentVariable('ADMOB_APP_ID'))</AdMobAppId>
+    <AdMobBannerId Condition="'$(AdMobBannerId)' == ''">$([System.Environment]::GetEnvironmentVariable('ADMOB_BANNER_ID'))</AdMobBannerId>
+  </PropertyGroup>
+
+  <!-- Pass AdMob IDs into Android manifest via placeholders -->
+  <PropertyGroup>
+    <AndroidManifestPlaceholders>ADMOB_APP_ID=$(AdMobAppId);ADMOB_BANNER_ID=$(AdMobBannerId)</AndroidManifestPlaceholders>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
+    <PackageReference Include="MonoGame.Framework.Android" Version="3.8.*" />
+    <!-- Google Play services Ads (AdMob) -->
+    <PackageReference Include="Xamarin.GooglePlayServices.Ads" Version="118.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AndroidResource Update="Resources\Drawable\Icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Content\controll_buttons.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <!-- Secrets.props is gitignored but can be present locally to supply real IDs -->
+    <None Update="Secrets.props">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="RestoreDotnetTools" BeforeTargets="CollectPackageReferences">
+    <Message Text="Restoring dotnet tools (this might take a while depending on your internet speed and should only happen upon building your project for the first time, or after upgrading MonoGame, or clearing your nuget cache)" Importance="High" />
+    <Exec Command="dotnet tool restore" />
+  </Target>
+
+  
+</Project>
