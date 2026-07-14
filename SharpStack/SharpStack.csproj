@@ -3,7 +3,7 @@
     <TargetFramework>net8.0-android</TargetFramework>
     <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
     <OutputType>Exe</OutputType>
-    <ApplicationId>com.companyname.Tetros</ApplicationId>
+    <ApplicationId>com.companyname.SharpStack</ApplicationId>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
   </PropertyGroup>

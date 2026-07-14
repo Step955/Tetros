@@ -56,11 +56,11 @@
 /processorParam:TextureFormat=Color
 /build:Icon.ico
 
-#begin tetros.wav
+#begin SharpStack.wav
 /importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:tetros.wav
+/build:SharpStack.wav
 
 #begin woodBricks/wood1.png
 /importer:TextureImporter

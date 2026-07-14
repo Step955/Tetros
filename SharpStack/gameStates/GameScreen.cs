@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tetros.engine;
+using SharpStack.engine;
 using Microsoft.Xna.Framework;
 using Java.Lang;
 using System.Diagnostics;
-using Tetros.gameParts;
+using SharpStack.gameParts;
 using Microsoft.Xna.Framework.Content;
 using Java.Util.Functions;
 
-namespace Tetros.menus
+namespace SharpStack.menus
 {
     internal class GameScreen : GameDefaultStruct
     {

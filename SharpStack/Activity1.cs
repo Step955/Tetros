@@ -4,7 +4,7 @@ using Android.OS;
 using Android.Views;
 using Microsoft.Xna.Framework;
 
-namespace Tetros
+namespace SharpStack
 {
     [Activity(
         Label = "@string/app_name",

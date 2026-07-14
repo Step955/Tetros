@@ -1,4 +1,4 @@
-﻿using Tetros.engine;
+﻿using SharpStack.engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,7 +8,7 @@ using System;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Input.Touch;
 
-namespace Tetros
+namespace SharpStack
 {
     public class Game1 : Game
     {
@@ -74,7 +74,7 @@ namespace Tetros
             // TODO: use this.Content to load your game content here
             
             // Loading a Song using the content pipeline
-            Song song = Content.Load<Song>("tetros");
+            Song song = Content.Load<Song>("SharpStack");
 
             // Set whether the song should repeat when finished
             MediaPlayer.IsRepeating = true;

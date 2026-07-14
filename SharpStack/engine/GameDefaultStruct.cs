@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Tetros.engine
+namespace SharpStack.engine
 {
     public class GameDefaultStruct
     {

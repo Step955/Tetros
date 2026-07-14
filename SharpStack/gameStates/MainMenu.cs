@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tetros.engine;
+using SharpStack.engine;
 
-namespace Tetros.menus
+namespace SharpStack.menus
 {
     internal class MainMenu: GameDefaultStruct
     {
@@ -34,7 +34,7 @@ namespace Tetros.menus
 
             _GUIElements["Button"].LoadTexture(ButtonTexture, new Rectangle(0, 0, 500, 200));
 
-            _GUIElements["GOText"].InitializeText("Tetros", Color.White, new Vector2(540, 300), TextFont);
+            _GUIElements["GOText"].InitializeText("SharpStack", Color.White, new Vector2(540, 300), TextFont);
             _GUIElements["GtMText"].InitializeText("Play", Color.White, new Vector2(540, 1625), TextFont);
         }
 
