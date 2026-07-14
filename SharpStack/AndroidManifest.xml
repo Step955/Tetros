@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="Tetros.Tetros" android:versionCode="1" android:versionName="1.0">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="SharpStack.SharpStack" android:versionCode="1" android:versionName="1.0">
 	<uses-feature android:glEsVersion="0x00020000" android:required="true" />
-	<application android:label="Tetros" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:icon="@drawable/icon">
+	<application android:label="SharpStack" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:icon="@drawable/icon">
 		<!-- Use AdMob App ID. For testing use the sample ID below. Replace with your real App ID for production. -->
 		<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="${ADMOB_APP_ID}" />
 		<meta-data android:name="ADMOB_BANNER_ID" android:value="${ADMOB_BANNER_ID}" />

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tetros.engine
+namespace SharpStack.engine
 {
     public class TimeEventsManager
     {

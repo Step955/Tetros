@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tetros.engine
+namespace SharpStack.engine
 {
     internal class GUIElements : GameDefaultStruct
     {

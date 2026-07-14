@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tetros.engine;
-using Tetros.gameStates;
+using SharpStack.engine;
+using SharpStack.gameStates;
 
-namespace Tetros.gameParts
+namespace SharpStack.gameParts
 {
     internal class GameField: GameDefaultStruct
     {

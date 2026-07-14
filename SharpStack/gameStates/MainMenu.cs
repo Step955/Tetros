@@ -6,12 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tetros.engine;
-using Tetros.menus;
+using SharpStack.engine;
 
-namespace Tetros.gameStates
+namespace SharpStack.menus
 {
-    internal class GameOver: GameDefaultStruct
+    internal class MainMenu: GameDefaultStruct
     {
         SpriteFont TextFont;
         private Dictionary<string, GUIElements> _GUIElements = new Dictionary<string, GUIElements>();
@@ -21,12 +20,11 @@ namespace Tetros.gameStates
         {
             _GUIElements.TryAdd("Button", new GUIElements.TouchReleaseButton());
             _GUIElements.TryAdd("GOText", new GUIElements.TextTopMiddle());
-            _GUIElements.TryAdd("GtMText", new GUIElements.TextTopMiddle());            
-            _GUIElements.TryAdd("ScoreText", new GUIElements.TextTopMiddle());            
+            _GUIElements.TryAdd("GtMText", new GUIElements.TextTopMiddle());
 
             _GUIElements["Button"].InitializeTouch(graphicsDevice, (object sender, EventArgs e) => Game1._gameStateManager.ChangeGameState(new GameScreen()), new Rectangle(290, 1600, 500, 200));
 
-            
+
         }
 
         public override void Load(ContentManager content)
@@ -36,15 +34,13 @@ namespace Tetros.gameStates
 
             _GUIElements["Button"].LoadTexture(ButtonTexture, new Rectangle(0, 0, 500, 200));
 
-            _GUIElements["GOText"].InitializeText("Game Over", Color.White, new Vector2(540, 300), TextFont);
-            _GUIElements["GtMText"].InitializeText("Restart", Color.White, new Vector2(540, 1625), TextFont);
-            _GUIElements["ScoreText"].InitializeText("Score: " + Game1.score, Color.White, new Vector2(540, 1200), TextFont);
+            _GUIElements["GOText"].InitializeText("SharpStack", Color.White, new Vector2(540, 300), TextFont);
+            _GUIElements["GtMText"].InitializeText("Play", Color.White, new Vector2(540, 1625), TextFont);
         }
 
         public override void Draw(GraphicsDevice graphicsDevice, GameTime gameTime)
         {
             foreach (var element in _GUIElements.Values) { element.Draw(graphicsDevice, gameTime); }
-
         }
 
         public override void Unload()

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 
-namespace Tetros.gameParts
+namespace SharpStack.gameParts
 {
     public class Bricks
     {
