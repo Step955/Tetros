@@ -72,7 +72,7 @@ namespace SharpStack
             _gameStateManager.LoadContent(Content);
 
             // TODO: use this.Content to load your game content here
-            
+            /*
             // Loading a Song using the content pipeline
             Song song = Content.Load<Song>("SharpStack");
 
@@ -90,7 +90,7 @@ namespace SharpStack
 
             // Start playing the background music
             MediaPlayer.Play(song);
-            
+            */
         }
 
         protected override void Update(GameTime gameTime)

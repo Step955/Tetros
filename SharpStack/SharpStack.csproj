@@ -1,11 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0-android</TargetFramework>
+    <TargetFramework>net9.0-android</TargetFramework>
     <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
     <OutputType>Exe</OutputType>
-    <ApplicationId>com.companyname.SharpStack</ApplicationId>
+    <ApplicationId>com.Step95.SharpStack</ApplicationId>
+	<Version>1.0.0</Version>
+	<AndroidVersionCode>100200</AndroidVersionCode>
+	<AndroidVersionName>1.0.0</AndroidVersionName>
     <ApplicationVersion>1</ApplicationVersion>
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AndroidKeyStore>False</AndroidKeyStore>
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AndroidKeyStore>True</AndroidKeyStore>
+	<AndroidSigningKeyStore>C:\SigningKeyVaults\sharpstack-upload.keystore</AndroidSigningKeyStore>
+	<AndroidSigningKeyAlias>sharpstack</AndroidSigningKeyAlias>
+	<AndroidSigningKeyPass>$(ANDROID_KEY_PASS)</AndroidSigningKeyPass>
+	<AndroidSigningStorePass>$(ANDROID_STORE_PASS)</AndroidSigningStorePass>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
