@@ -1,4 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="Secrets.props" Condition="Exists('Secrets.props')" />
+
   <PropertyGroup>
     <TargetFramework>net9.0-android</TargetFramework>
     <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
