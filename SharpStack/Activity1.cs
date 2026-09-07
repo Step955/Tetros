@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.Gms.Ads;
 #endif
 using Microsoft.Xna.Framework;
+using SharpStack.engine;
 
 namespace SharpStack
 {
@@ -24,72 +25,10 @@ namespace SharpStack
         private Game1 _game;
         private View _view;
         private RelativeLayout _layout;
-#if GOOGLE_ADS
-        AdView AdBanner;
+        private AdsManager _adsManager;
 
-        // Listener adapter for MobileAds initialization callback
-        private class InitCompleteListener : Java.Lang.Object, Android.Gms.Ads.Initialization.IOnInitializationCompleteListener
-        {
-            public void OnInitializationComplete(Android.Gms.Ads.Initialization.IInitializationStatus status)
-            {
-                // no-op
-            }
-        }
-#endif
-
-#if GOOGLE_ADS
-        private void InitializeAds(bool personalized = true)
-        {
-            try
-            {
-                MobileAds.Initialize(this, new InitCompleteListener());
-
-                // Create banner (TEST AD unit)
-                var ai = Application.Context.PackageManager.GetApplicationInfo(Application.Context.PackageName, Android.Content.PM.PackageInfoFlags.MetaData);
-                var bannerId = ai.MetaData?.GetString("ADMOB_BANNER_ID");
-                if (string.IsNullOrEmpty(bannerId))
-                {
-                    // no banner id provided; skip creating banner
-                    return;
-                }
-
-                AdBanner = new AdView(this) { AdUnitId = bannerId, AdSize = AdSize.FullBanner };
-
-                var adParams = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WrapContent,
-                    RelativeLayout.LayoutParams.WrapContent);
-
-                adParams.AddRule(LayoutRules.AlignParentBottom);
-
-                _layout.AddView(AdBanner, adParams);
-
-                var builder = new AdRequest.Builder();
-                if (!personalized)
-                {
-                    var extras = new Android.OS.Bundle();
-                    extras.PutString("npa", "1");
-                    try
-                    {
-                        var admobAdapterClass = Java.Lang.Class.ForName("com.google.ads.mediation.admob.AdMobAdapter");
-                        builder.AddNetworkExtrasBundle(admobAdapterClass, extras);
-                    }
-                    catch
-                    {
-                        // fallback: ignore if adapter class not found
-                    }
-                }
-
-                var request = builder.Build();
-                AdBanner.LoadAd(request);
-            }
-            catch
-            {
-                // ignore
-            }
-        }
-#else
-        private void InitializeAds() { }
-#endif
+        // Ads are managed by AdsManager (defined in SharpStack.engine). AdsManager is a thin wrapper
+        // that contains platform-specific code under the GOOGLE_ADS symbol and is a no-op otherwise.
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -130,6 +69,9 @@ namespace SharpStack
                 _layout.AddView(_view);
             }
 
+            // initialize AdsManager (no-op if GOOGLE_ADS not defined)
+            _adsManager = new AdsManager(this, _layout);
+
             // Cookie / consent for ads (GDPR-friendly simple flow)
             var prefs = GetSharedPreferences("tetros_prefs", FileCreationMode.Private);
             var consent = prefs.GetString("cookie_consent", null);
@@ -143,12 +85,12 @@ namespace SharpStack
                     .SetPositiveButton("Personalized", (sender, args) =>
                     {
                         prefs.Edit().PutString("cookie_consent", "personalized").Commit();
-                        InitializeAds(true);
+                        _adsManager.Initialize(true);
                     })
                     .SetNeutralButton("Non-personalized", (sender, args) =>
                     {
                         prefs.Edit().PutString("cookie_consent", "nonpersonalized").Commit();
-                        InitializeAds(false);
+                        _adsManager.Initialize(false);
                     })
                     .SetNegativeButton("Decline", (sender, args) =>
                     {
@@ -158,11 +100,11 @@ namespace SharpStack
             }
             else if (consent == "personalized")
             {
-                InitializeAds(true);
+                _adsManager.Initialize(true);
             }
             else if (consent == "nonpersonalized")
             {
-                InitializeAds(false);
+                _adsManager.Initialize(false);
             }
 
             SetContentView(_layout);

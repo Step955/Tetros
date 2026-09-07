@@ -2,7 +2,7 @@
   <Import Project="Secrets.props" Condition="Exists('Secrets.props')" />
 
   <PropertyGroup>
-    <TargetFramework>net9.0-android</TargetFramework>
+    <TargetFramework>net10.0-android</TargetFramework>
     <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
     <OutputType>Exe</OutputType>
     <ApplicationId>com.Step95.SharpStack</ApplicationId>
@@ -44,6 +44,7 @@
 	
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <AndroidKeyStore>True</AndroidKeyStore>
+	 <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
 	<AndroidSigningKeyStore>C:\SigningKeyVaults\sharpstack-upload.keystore</AndroidSigningKeyStore>
 	<AndroidSigningKeyAlias>sharpstack</AndroidSigningKeyAlias>
 	<AndroidSigningKeyPass>$(ANDROID_KEY_PASS)</AndroidSigningKeyPass>
