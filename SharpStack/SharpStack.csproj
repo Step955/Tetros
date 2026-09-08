@@ -21,6 +21,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <AndroidKeyStore>False</AndroidKeyStore>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+	<DebugSymbols>true</DebugSymbols>
+	<AndroidIncludeDebugSymbols>true</AndroidIncludeDebugSymbols>
   </PropertyGroup>
 
   <!-- Default AdMob IDs per configuration. Debug uses official Google test IDs. -->
