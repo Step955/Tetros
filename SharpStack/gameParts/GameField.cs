@@ -218,7 +218,9 @@ namespace SharpStack.gameParts
                 7 => _wood7,
                 _ => null
             };
-            nextBrick.RenderPreview(_spriteBatch, nextTexture, new Vector2(515, 2100));
+
+            // Draw the next brick preview at a specific position (e.g., top-right corner)
+            nextBrick.RenderPreview(_spriteBatch, nextTexture, new Vector2(515, 2050));
 
             _spriteBatch.End();
         }
