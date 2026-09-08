@@ -44,10 +44,10 @@ namespace SharpStack.menus
 
             _GUIElements.TryAdd("ScoreText", new GUIElements.TextTopMiddle());
 
-            _GUIElements["LeftMoveButton"].InitializeTouch(graphicsDevice, gameField.moveLeft, new Rectangle(100, 2048, 200, 200));
-            _GUIElements["RightMoveButton"].InitializeTouch(graphicsDevice, gameField.moveRight, new Rectangle(780, 2048, 200, 200));
-            _GUIElements["LeftRotateButton"].InitializeTouch(graphicsDevice, gameField.rotateLeft, new Rectangle(100, 1769, 200, 200));
-            _GUIElements["RightRotateButton"].InitializeTouch(graphicsDevice, gameField.rotateRight, new Rectangle(780, 1769, 200, 200));
+            _GUIElements["LeftMoveButton"].InitializeTouch(graphicsDevice, gameField.moveLeft, new Rectangle(100, 1990, 200, 200));
+            _GUIElements["RightMoveButton"].InitializeTouch(graphicsDevice, gameField.moveRight, new Rectangle(780, 1990, 200, 200));
+            _GUIElements["LeftRotateButton"].InitializeTouch(graphicsDevice, gameField.rotateLeft, new Rectangle(100, 1740, 200, 200));
+            _GUIElements["RightRotateButton"].InitializeTouch(graphicsDevice, gameField.rotateRight, new Rectangle(780, 1740, 200, 200));
             _GUIElements["SpeedUpButton"].InitializeTouch(graphicsDevice, gameField.SpeedUpFall, gameField.SlowDownFall, new Rectangle(40, 90, 1000, 1600));
 
             Game1.score = 0;
@@ -69,7 +69,7 @@ namespace SharpStack.menus
             _GUIElements["RightRotateButton"].LoadTexture(ButtonsTextures , new Rectangle(300,0,100,100));
 
 
-            _GUIElements["ScoreText"].InitializeText(Game1.score.ToString(), Color.White, new Vector2(540, 1800), TextFont);
+            _GUIElements["ScoreText"].InitializeText(Game1.score.ToString(), Color.White, new Vector2(540, 1770), TextFont);
         }
 
         public override void Update(GameTime gameTime)

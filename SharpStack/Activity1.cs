@@ -5,7 +5,7 @@ using Android.Content;
 using Android.Views;
 using Android.Widget;
 #if GOOGLE_ADS
-using Android.Gms.Ads;
+using Google.Android.Gms.Ads;
 #endif
 using Microsoft.Xna.Framework;
 using SharpStack.engine;
@@ -72,40 +72,8 @@ namespace SharpStack
             // initialize AdsManager (no-op if GOOGLE_ADS not defined)
             _adsManager = new AdsManager(this, _layout);
 
-            // Cookie / consent for ads (GDPR-friendly simple flow)
-            var prefs = GetSharedPreferences("tetros_prefs", FileCreationMode.Private);
-            var consent = prefs.GetString("cookie_consent", null);
-            if (consent == null)
-            {
-                // Show blocking consent dialog with options
-                new AlertDialog.Builder(this)
-                    .SetTitle("Cookies & Ads")
-                    .SetMessage("This app may show ads. Choose personalized ads, non-personalized ads, or decline ads.")
-                    .SetCancelable(false)
-                    .SetPositiveButton("Personalized", (sender, args) =>
-                    {
-                        prefs.Edit().PutString("cookie_consent", "personalized").Commit();
-                        _adsManager.Initialize(true);
-                    })
-                    .SetNeutralButton("Non-personalized", (sender, args) =>
-                    {
-                        prefs.Edit().PutString("cookie_consent", "nonpersonalized").Commit();
-                        _adsManager.Initialize(false);
-                    })
-                    .SetNegativeButton("Decline", (sender, args) =>
-                    {
-                        prefs.Edit().PutString("cookie_consent", "declined").Commit();
-                    })
-                    .Show();
-            }
-            else if (consent == "personalized")
-            {
-                _adsManager.Initialize(true);
-            }
-            else if (consent == "nonpersonalized")
-            {
-                _adsManager.Initialize(false);
-            }
+            // Request consent and initialize ads (UMP with fallback is handled by AdsManager)
+            _adsManager.RequestConsentAndInitialize();
 
             SetContentView(_layout);
             _game.Run();

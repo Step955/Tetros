@@ -3,7 +3,8 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0-android</TargetFramework>
-    <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion>24</SupportedOSPlatformVersion>
+    <AndroidMinSdkVersion>24</AndroidMinSdkVersion>
     <OutputType>Exe</OutputType>
     <ApplicationId>com.Step95.SharpStack</ApplicationId>
 	<Version>1.0.0</Version>
@@ -54,8 +55,9 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.*" />
     <PackageReference Include="MonoGame.Framework.Android" Version="3.8.*" />
+    <PackageReference Include="Xamarin.Google.UserMessagingPlatform" Version="4.0.0.4" />
     <!-- Google Play services Ads (AdMob) -->
-    <PackageReference Include="Xamarin.GooglePlayServices.Ads" Version="118.1.1" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Ads" Version="125.4.0.3" />
   </ItemGroup>
 
   <ItemGroup>

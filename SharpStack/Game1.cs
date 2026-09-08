@@ -59,7 +59,6 @@ namespace SharpStack
             _Screen = new RenderTarget2D(GraphicsDevice, 1080, 2400, false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
             _userInputManager = new UserInputManager();
             _gameStateManager.Initialize(GraphicsDevice);
-            _timeEvents.AddTimeEvent(10.0f, test);
 
             GraphicsDevice.Viewport = new Viewport(0, 0, GraphicsDevice.PresentationParameters.BackBufferWidth, GraphicsDevice.PresentationParameters.BackBufferHeight);
 
@@ -110,11 +109,6 @@ namespace SharpStack
             _gameStateManager.Update(gameTime);
 
             base.Update(gameTime);
-        }
-
-        void test()
-        {
-            Debug.WriteLine("Test function called!");
         }
 
         protected override void Draw(GameTime gameTime)
